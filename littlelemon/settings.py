@@ -177,8 +177,8 @@ REST_FRAMEWORK = {
         'rest_framework_xml.renderers.XMLRenderer',
     ],
     'DEFAULT_THROTTLE_RATES': {
-        'anon': '3/minute',
-        'user': '6/minute',
+        'anon': '100/minute',
+        'user': '300/minute',
     },
     'DEFAULT_FILTER_BACKENDS': [
         'rest_framework.filters.OrderingFilter',
