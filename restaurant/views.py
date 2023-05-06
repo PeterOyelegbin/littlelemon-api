@@ -27,10 +27,6 @@ class BookingView(viewsets.ModelViewSet):
     serializer_class = BookingSerializer
     throttle_classes = [throttling.AnonRateThrottle, throttling.UserRateThrottle]
 
-    # @method_decorator(csrf_exempt)
-    # def dispatch(self, request, *args, **kwargs):
-    #     return super(BookingView, self).dispatch(request, *args, **kwargs)
-    
     @method_decorator(csrf_exempt)
     def create(self, request, *args, **kwargs):
         data = request.data

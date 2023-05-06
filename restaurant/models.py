@@ -22,26 +22,29 @@ class MenuItem(models.Model):
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
 
     def __str__(self):
-        return f'{self.name} -> {self.price} -> {self.category.title}'
+        return self.name
 
 
 class Booking(models.Model):
-    occasion_choices = (
-        ("Birthday", "Birthday"),
-        ("Wedding", "Wedding"),
-        ("Reunion", "Reunion"),
-        ("Date", "Date"),
-        ("Others", "Others"),
-    )
-
     id = models.UUIDField(default=uuid4, unique=True, primary_key=True, editable=False)
     full_name = models.CharField(max_length=255)    
     email = models.EmailField()
     phone = PhoneField()
+    occasion = models.CharField(max_length=100)
     number_of_guests = models.PositiveIntegerField()
     date = models.DateField()
-    time = models.SmallIntegerField()
-    occasion = models.CharField(max_length=20, choices=occasion_choices, default='Birthday')
+    time = models.CharField(max_length=4)
     
     def __str__(self):
         return f'{self.full_name} - {self.date}, {self.time}'
+
+
+# class Review(models.Model):
+#     id = models.UUIDField(default=uuid4, unique=True, primary_key=True, editable=False)
+#     full_name = models.CharField(max_length=255)    
+#     email = models.EmailField(unique=True)
+#     comment = models.TextField(max_length=1000)
+#     ratings = models.PositiveIntegerField()
+
+#     def __str__(self):
+#         return f'{self.full_name} - {self.ratings}'
